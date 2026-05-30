@@ -197,7 +197,7 @@ to { opacity: 1; }
 
 <div class="slide" id="slide2">
 <h2>A Little Secret... 🤫</h2>
-<p>i spent the whole night making this, I made this because of how much you love coding and i wanted to try it, i hope i did not do bad👉🏻👈🏻i did my best so i hope you like it!</p>
+<p>I spent the whole night making this because of how much you love coding and i wanted to try it, i hope i did not do bad 👉🏻👈🏻 i did my best so i hope you like it!</p>
 <div class="btn-container">
 <button class="btn-next" onclick="nextSlide(3)">Next Slide ➡️</button>
 </div>
@@ -230,7 +230,7 @@ to { opacity: 1; }
 
 <div class="slide" id="slide6">
 <h2>Question time! 🥰</h2>
-<p>Do you promise to be mine forever and ever?you'll regret pressing "no" 😈</p>
+<p>Do you promise to be mine forever and ever? you'll regret pressing "no" 😈</p>
 <div class="btn-container" id="questionContainer" style="height: 140px; width: 100%;">
 <button class="btn-yes" style="position: absolute; left: 10px;" onclick="startHeartFinale()">Yes, I do! ❤️</button>
 <button class="btn-no" id="noBtn" style="right: 10px; top: 45px;">No</button>
@@ -265,7 +265,7 @@ const guiltTexts = [
 "you don't love me? 😭"
  ];
 
-let textTrackerIndex = 0; // Tracks which message is next in line
+let textTrackerIndex = 0; 
 
 function runaway() {
 const oldLeft = noBtn.style.left || (questionContainer.getBoundingClientRect().width - noBtn.offsetWidth - 10) + 'px';
@@ -288,7 +288,6 @@ function spawnPlease(x, y) {
 const pleaseTag = document.createElement('div');
 pleaseTag.className = 'please-text';
 
-// Grab the exact text sequentially, then shift index over
 pleaseTag.innerText = guiltTexts[textTrackerIndex];
 textTrackerIndex = (textTrackerIndex + 1) % guiltTexts.length; 
 
@@ -347,7 +346,6 @@ const scale = Math.min(width, height) / 30;
 
 for (let t = 0; t < Math.PI * 2; t += 0.03) {
 let x = 16 * Math.pow(Math.sin(t), 3);
-// FIXED MATH MULTIPLICATION HERE (added * symbols):
 let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
 heartPoints.push({ x: width / 2 + x * scale, y: height / 2 - y * scale });
 }
@@ -370,7 +368,6 @@ this.y += (this.targetY - this.y) * this.speedY;
 if (this.opacity < 0.85) this.opacity += 0.01;
 }
 draw() {
-// FIXED STRING QUOTES AND WRAPPING HERE:
 ctx.fillStyle = `rgba(255, 20, 100, ${this.opacity})`; 
 ctx.font = `bold ${this.fontSize}px Arial`;
 ctx.shadowBlur = this.glow;
