@@ -1,393 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Jay ❤️</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body, html {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: #ffeef2; 
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #4a1521; 
-            user-select: none;
-            -webkit-user-select: none;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Jay ❤️</title>
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+body, html {
+width: 100%;
+height: 100%;
+overflow: hidden;
+background-color: #ffeef2;
+font-family: 'Arial', sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+color: #4a1521;
+user-select: none;
+-webkit-user-select: none;
+}
 
-        /* Slide Container Setup */
-        .slide {
-            position: absolute;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 182, 193, 0.5);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
-            z-index: 10;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
+/* Slide Container Setup */
+.slide {
+position: absolute;
+width: 90%;
+max-width: 400px;
+text-align: center;
+display: none;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background: rgba(255, 255, 255, 0.85);
+padding: 30px;
+border-radius: 20px;
+border: 1px solid rgba(255, 182, 193, 0.5);
+backdrop-filter: blur(10px);
+box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
+z-index: 10;
+animation: fadeIn 0.5s ease-out forwards;
+}
 
-        .slide.active {
-            display: flex;
-        }
+.slide.active {
+display: flex;
+}
 
-        h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            line-height: 1.4;
-            color: #ff2a7f; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+h2 {
+font-size: 1.8rem;
+margin-bottom: 20px;
+line-height: 1.4;
+color: #ff2a7f;
+text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
 
-        p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
+p {
+font-size: 1.1rem;
+color: #555;
+margin-bottom: 30px;
+line-height: 1.5;
+}
 
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            position: relative;
-            height: 140px; 
-        }
+/* Buttons */
+.btn-container {
+display: flex;
+gap: 15px;
+justify-content: center;
+align-items: center;
+width: 100%;
+position: relative;
+height: 140px;
+}
 
-        button {
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+button {
+padding: 12px 25px;
+font-size: 1rem;
+font-weight: bold;
+border: none;
+border-radius: 25px;
+cursor: pointer;
+transition: transform 0.2s;
+}
 
-        .btn-next, .btn-yes {
-            background: linear-gradient(45deg, #ff4b5c, #ff2a7f);
-            color: white;
-            box-shadow: 0 5px 15px rgba(255, 75, 92, 0.3);
-            z-index: 12;
-        }
+.btn-next, .btn-yes {
+background: linear-gradient(45deg, #ff4b5c, #ff2a7f);
+color: white;
+box-shadow: 0 5px 15px rgba(255, 75, 92, 0.3);
+z-index: 12;
+}
 
-        .btn-no, .btn-exit {
-            background-color: #e0e0e0;
-            color: #888;
-            position: absolute;
-            z-index: 12;
-        }
+.btn-no, .btn-exit {
+background-color: #e0e0e0;
+color: #888;
+position: absolute;
+z-index: 12;
+}
 
-        /* Cute Please Floating Text */
-        .please-text {
-            position: absolute;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: white;
-            background: #ff4b72;
-            padding: 6px 14px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(255, 75, 114, 0.4);
-            pointer-events: none; 
-            white-space: nowrap; 
-            animation: popOut 0.4s ease-out forwards;
-            z-index: 11;
-        }
+/* Cute Please Floating Text */
+.please-text {
+position: absolute;
+font-size: 0.9rem;
+font-weight: bold;
+color: white;
+background: #ff4b72;
+padding: 6px 14px;
+border-radius: 15px;
+box-shadow: 0 4px 10px rgba(255, 75, 114, 0.4);
+pointer-events: none;
+white-space: nowrap;
+animation: popOut 0.4s ease-out forwards;
+z-index: 11;
+}
 
-        @keyframes popOut {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.85; }
-        }
+@keyframes popOut {
+0% { transform: scale(0); opacity: 0; }
+50% { transform: scale(1.1); opacity: 1; }
+100% { transform: scale(1); opacity: 0.85; }
+}
 
-        /* Canvas for Heart Background */
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            display: none;
-        }
+/* Canvas for Heart Background */
+canvas {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+display: none;
+}
 
-        /* Grand Finale Container */
-        .letter-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 40px 24px;
-            overflow-y: auto;
-            text-align: center;
-            background: rgba(255, 238, 242, 0.6); 
-        }
+/* Grand Finale Container */
+.letter-container {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 5;
+display: none;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+padding: 40px 24px;
+overflow-y: auto;
+text-align: center;
+background: rgba(255, 238, 242, 0.6);
+}
 
-        .center-text {
-            color: #ff2a7f;
-            font-size: 2.3rem;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 75, 92, 0.3);
-            margin-top: 40px;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: textFadeIn 2s ease-in-out forwards 0.5s;
-        }
+.center-text {
+color: #ff2a7f;
+font-size: 2.3rem;
+font-weight: bold;
+text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 75, 92, 0.3);
+margin-top: 40px;
+margin-bottom: 30px;
+opacity: 0;
+animation: textFadeIn 2s ease-in-out forwards 0.5s;
+}
 
-        /* Your Long Letter Styling */
-        .love-letter {
-            color: #4a1521;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.9); 
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 75, 92, 0.15);
-            box-shadow: 0 8px 25px rgba(255, 75, 92, 0.1);
-            opacity: 0;
-            animation: textFadeIn 3s ease-in-out forwards 2s;
-        }
+/* Your Long Letter Styling */
+.love-letter {
+color: #4a1521;
+font-size: 1.15rem;
+line-height: 1.7;
+max-width: 500px;
+background: rgba(255, 255, 255, 0.9);
+padding: 25px;
+border-radius: 15px;
+border: 1px solid rgba(255, 75, 92, 0.15);
+box-shadow: 0 8px 25px rgba(255, 75, 92, 0.1);
+opacity: 0;
+animation: textFadeIn 3s ease-in-out forwards 2s;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+@keyframes fadeIn {
+from { opacity: 0; transform: scale(0.9); }
+to { opacity: 1; transform: scale(1); }
+}
 
-        @keyframes textFadeIn {
-            to { opacity: 1; }
-        }
-    </style>
+@keyframes textFadeIn {
+to { opacity: 1; }
+}
+</style>
 </head>
 <body>
 
-    <div class="slide active" id="slide1">
-        <h2>Hello Babii happy 11th monthsary! 🎉</h2>
-        <p>I made a little game specifically for you. Are you ready to play?</p>
-        <div class="btn-container">
-            <button class="btn-next" onclick="nextSlide(2)">Let's Go! 🚀</button>
-        </div>
-    </div>
+<div class="slide active" id="slide1">
+<h2>Hello Babii happy 11th monthsary! 🎉</h2>
+<p>I made a little game specifically for you. Are you ready to play?</p>
+<div class="btn-container">
+<button class="btn-next" onclick="nextSlide(2)">Let's Go! 🚀</button>
+</div>
+</div>
 
-    <div class="slide" id="slide2">
-        <h2>A Little Secret... 🤫</h2>
-        <p>I made this because of how much you love coding and i wanted to try it, i did my best so i hope you like it!</p>
-        <div class="btn-container">
-            <button class="btn-next" onclick="nextSlide(3)">Next Slide ➡️</button>
-        </div>
-    </div>
+<div class="slide" id="slide2">
+<h2>A Little Secret... 🤫</h2>
+<p>i spent the whole night making this, I made this because of how much you love coding and i wanted to try it, i hope i did not do bad👉🏻👈🏻i did my best so i hope you like it!</p>
+<div class="btn-container">
+<button class="btn-next" onclick="nextSlide(3)">Next Slide ➡️</button>
+</div>
+</div>
 
-    <div class="slide" id="slide3">
-        <h2>Just a Reminder... 💭</h2>
-        <p>I was just thinking about how incredibly lucky I am to have you in my life. You make everything brighter.</p>
-        <div class="btn-container">
-            <button class="btn-next" onclick="nextSlide(4)">Next Slide ➡️</button>
-        </div>
-    </div>
+<div class="slide" id="slide3">
+<h2>Just a Reminder... 💭</h2>
+<p>I was just thinking about how incredibly lucky I am to have you in my life. You make everything brighter.</p>
+<div class="btn-container">
+<button class="btn-next" onclick="nextSlide(4)">Next Slide ➡️</button>
+</div>
+</div>
 
-    <div class="slide" id="slide4">
-        <h2>Important Choice 🛑</h2>
-        <p>Do you want to exit the game, or proceed to see what's next?</p>
-        <div class="btn-container" style="height: 80px;">
-            <button class="btn-next" style="position: absolute; left: 15px;" onclick="nextSlide(5)">Proceed</button>
-            <button class="btn-exit" id="exitBtn" style="right: 15px;">Exit</button>
-        </div>
-    </div>
+<div class="slide" id="slide4">
+<h2>Important Choice 🛑</h2>
+<p>Do you want to exit the game, or proceed to see what's next?</p>
+<div class="btn-container" style="height: 80px;">
+<button class="btn-next" style="position: absolute; left: 15px;" onclick="nextSlide(5)">Proceed</button>
+<button class="btn-exit" id="exitBtn" style="right: 15px;">Exit</button>
+</div>
+</div>
 
-    <div class="slide" id="slide5">
-        <h2>Caught You! 😜</h2>
-        <p>Good choice. Leaving wasn't an option anyway! I really appreciate how patient, sweet, and amazing you always are to me.</p>
-        <div class="btn-container">
-            <button class="btn-next" onclick="nextSlide(6)">One last question... 🤔</button>
-        </div>
-    </div>
+<div class="slide" id="slide5">
+<h2>Caught You! 😜</h2>
+<p>Good choice. Leaving wasn't an option anyway! I really appreciate how patient, sweet, and amazing you always are to me.</p>
+<div class="btn-container">
+<button class="btn-next" onclick="nextSlide(6)">One last question... 🤔</button>
+</div>
+</div>
 
-    <div class="slide" id="slide6">
-        <h2>Question time! 🥰</h2>
-        <p>Do you promise to be mine forever and ever?</p>
-        <div class="btn-container" id="questionContainer" style="height: 140px; width: 100%;">
-            <button class="btn-yes" style="position: absolute; left: 10px;" onclick="startHeartFinale()">Yes, I do! ❤️</button>
-            <button class="btn-no" id="noBtn" style="right: 10px; top: 45px;">No</button>
-        </div>
-    </div>
+<div class="slide" id="slide6">
+<h2>Question time! 🥰</h2>
+<p>Do you promise to be mine forever and ever?you'll regret pressing "no" 😈</p>
+<div class="btn-container" id="questionContainer" style="height: 140px; width: 100%;">
+<button class="btn-yes" style="position: absolute; left: 10px;" onclick="startHeartFinale()">Yes, I do! ❤️</button>
+<button class="btn-no" id="noBtn" style="right: 10px; top: 45px;">No</button>
+</div>
+</div>
 
-    <canvas id="heartCanvas"></canvas>
-    
-    <div class="letter-container" id="finaleContainer">
-        <div class="center-text">I love you, Jay</div>
-        <div class="love-letter">
-            You are not only what i want in this world, but you are the only person that felt like home, a solitude of my soul, mind, and heart, a peace that i seek but found me. You make me feel safe, loved, and assured, baby i love you so much, i wanted to start a family with you, it's not that i am not ready, i was looking for sanctuary that i never knew was infront of me, i am sorry i failed to realize that, that i am held and cherished right even before i decided to be with you, that i had succumbed to such insecurities i failed to see that my husband will love me forever and always, that you would always want me to be happy, to be sure of decisions, I'm sorry that i failed to realize of how lucky i am of how much of a gift you are, ofcourse i wanna have your babies, ofcourse i wanna grow old with you, ofcourse i will let you see all of my flaws, ofcourse you're behalf of me, ofcourse i will love my body, the same way you do. Because i love everything you love, and that includes me, i love myself thanks to you. You're forever and always my salvation, and this time i will never fail to see that.
-        </div>
-    </div>
+<canvas id="heartCanvas"></canvas>
 
-    <script>
-        function nextSlide(slideNumber) {
-            document.querySelectorAll('.slide').forEach(slide => {
-                slide.classList.remove('active');
-            });
-            document.getElementById('slide' + slideNumber).classList.add('active');
-        }
+<div class="letter-container" id="finaleContainer">
+<div class="center-text">I love you, Jay</div>
+<div class="love-letter">
+You are not only what i want in this world, but you are the only person that felt like home, a solitude of my soul, mind, and heart, a peace that i seek but found me. You make me feel safe, loved, and assured, baby i love you so much, i wanted to start a family with you, it's not that i am not ready, i was looking for sanctuary that i never knew was infront of me, i am sorry i failed to realize that, that i am held and cherished right even before i decided to be with you, that i had succumbed to such insecurities i failed to see that my husband will love me forever and always, that you would always want me to be happy, to be sure of decisions, I'm sorry that i failed to realize of how lucky i am of how much of a gift you are, ofcourse i wanna have your babies, ofcourse i wanna grow old with you, ofcourse i will let you see all of my flaws, ofcourse you're behalf of me, ofcourse i will love my body, the same way you do. Because i love everything you love, and that includes me, i love myself thanks to you. You're forever and always my salvation, and this time i will never fail to see that.
+</div>
+</div>
 
-        // Runaway "No" button with Sequential Tracked Messages
-        const noBtn = document.getElementById('noBtn');
-        const questionContainer = document.getElementById('questionContainer');
-        
-        // List of tracked texts in absolute order
-        const guiltTexts = [
-            "please 🥺",
-            "pretty please 🥺👉👈",
-            "you don't love me? 😭"
-        ];
-        
-        let textTrackerIndex = 0; // Tracks which message is next in line
+<script>
+function nextSlide(slideNumber) {
+document.querySelectorAll('.slide').forEach(slide => {
+slide.classList.remove('active');
+});
+document.getElementById('slide' + slideNumber).classList.add('active');
+}
 
-        function runaway() {
-            const oldLeft = noBtn.style.left || (questionContainer.getBoundingClientRect().width - noBtn.offsetWidth - 10) + 'px';
-            const oldTop = noBtn.style.top || '45px';
+// Runaway "No" button with Sequential Tracked Messages
+const noBtn = document.getElementById('noBtn');
+const questionContainer = document.getElementById('questionContainer');
 
-            spawnPlease(oldLeft, oldTop);
+// List of tracked texts in absolute order
+const guiltTexts = [
+"please 🥺",
+"pretty please 🥺👉👈",
+"you don't love me? 😭"
+ ];
 
-            const containerRect = questionContainer.getBoundingClientRect();
-            const maxX = containerRect.width - noBtn.offsetWidth;
-            const maxY = containerRect.height - noBtn.offsetHeight;
-            
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-            
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-        }
+let textTrackerIndex = 0; // Tracks which message is next in line
 
-        function spawnPlease(x, y) {
-            const pleaseTag = document.createElement('div');
-            pleaseTag.className = 'please-text';
-            
-            // CRITICAL CHANGE: Grab the exact text sequentially, then shift index over
-            pleaseTag.innerText = guiltTexts[textTrackerIndex];
-            textTrackerIndex = (textTrackerIndex + 1) % guiltTexts.length; // Resets cleanly back to 0 after hitting index 2
-            
-            pleaseTag.style.left = x;
-            pleaseTag.style.top = y;
-            
-            questionContainer.appendChild(pleaseTag);
-            
-            setTimeout(() => {
-                pleaseTag.remove();
-            }, 3000);
-        }
+function runaway() {
+const oldLeft = noBtn.style.left || (questionContainer.getBoundingClientRect().width - noBtn.offsetWidth - 10) + 'px';
+const oldTop = noBtn.style.top || '45px';
 
-        noBtn.addEventListener('mouseover', runaway);
-        noBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            runaway();
-        });
+spawnPlease(oldLeft, oldTop);
 
-        const exitBtn = document.getElementById('exitBtn');
-        function exitAlert() {
-            alert("⚠️ Error 404: The 'Exit' button is broken. You are stuck with me! Click 'Proceed' instead. 😘");
-        }
-        exitBtn.addEventListener('click', exitAlert);
-        exitBtn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            exitAlert();
-        });
+const containerRect = questionContainer.getBoundingClientRect();
+const maxX = containerRect.width - noBtn.offsetWidth;
+const maxY = containerRect.height - noBtn.offsetHeight;
 
-        function startHeartFinale() {
-            document.getElementById('slide6').classList.remove('active');
-            const canvas = document.getElementById('heartCanvas');
-            const finaleContainer = document.getElementById('finaleContainer');
-            canvas.style.display = 'block';
-            finaleContainer.style.display = 'flex';
-            runHeartAnimation();
-        }
+const randomX = Math.random() * maxX;
+const randomY = Math.random() * maxY;
 
-        function runHeartAnimation() {
-            const canvas = document.getElementById('heartCanvas');
-            const ctx = canvas.getContext('2d');
+noBtn.style.left = randomX + 'px';
+noBtn.style.top = randomY + 'px';
+}
 
-            function resize() {
-                canvas.width = window.innerWidth * window.devicePixelRatio;
-                canvas.height = window.innerHeight * window.devicePixelRatio;
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            }
-            resize();
+function spawnPlease(x, y) {
+const pleaseTag = document.createElement('div');
+pleaseTag.className = 'please-text';
 
-            const textToDisplay = "I love you Jay";
-            const particles = [];
-            const heartPoints = []; 
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const scale = Math.min(width, height) / 30; 
+// Grab the exact text sequentially, then shift index over
+pleaseTag.innerText = guiltTexts[textTrackerIndex];
+textTrackerIndex = (textTrackerIndex + 1) % guiltTexts.length; 
 
-            for (let t = 0; t < Math.PI * 2; t += 0.03) {
-                let x = 16 * Math.pow(Math.sin(t), 3);
-                let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
-                heartPoints.push({ x: width / 2 + x * scale, y: height / 2 - y * scale });
-            }
+pleaseTag.style.left = x;
+pleaseTag.style.top = y;
 
-            class TextParticle {
-                constructor(targetX, targetY) {
-                    this.x = Math.random() * width;
-                    this.y = Math.random() * height;
-                    this.targetX = targetX + (Math.random() - 0.5) * 30;
-                    this.targetY = targetY + (Math.random() - 0.5) * 30;
-                    this.speedX = 0.02 + Math.random() * 0.03;
-                    this.speedY = 0.02 + Math.random() * 0.03;
-                    this.fontSize = Math.floor(Math.random() * 5) + 9; 
-                    this.opacity = 0;
-                    this.glow = Math.random() * 10 + 2;
-                }
-                update() {
-                    this.x += (this.targetX - this.x) * this.speedX;
-                    this.y += (this.targetY - this.y) * this.speedY;
-                    if (this.opacity < 0.85) this.opacity += 0.01;
-                }
-                draw() {
-                    ctx.fillStyle = `rgba(255, 20, 100, ${this.opacity})`;
-                    ctx.font = `bold ${this.fontSize}px Arial`;
-                    ctx.shadowBlur = this.glow;
-                    ctx.shadowColor = "rgba(255, 255, 255, 1)";
-                    ctx.fillText(textToDisplay, this.x, this.y);
-                }
-            }
+questionContainer.appendChild(pleaseTag);
 
-            for (let i = 0; i < 4; i++) {
-                heartPoints.forEach(point => { particles.push(new TextParticle(point.x, point.y)); });
-            }
+setTimeout(() => {
+pleaseTag.remove();
+}, 3000);
+}
 
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => { p.update(); p.draw(); });
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-    </script>
+noBtn.addEventListener('mouseover', runaway);
+noBtn.addEventListener('touchstart', (e) => {
+e.preventDefault();
+runaway();
+});
+
+const exitBtn = document.getElementById('exitBtn');
+function exitAlert() {
+alert("⚠️ Error 404: The 'Exit' button is broken. Sike! You are stuck with me! Click 'Proceed' instead. 😘");
+}
+exitBtn.addEventListener('click', exitAlert);
+exitBtn.addEventListener('touchstart', (e) => {
+e.preventDefault();
+exitAlert();
+});
+
+function startHeartFinale() {
+document.getElementById('slide6').classList.remove('active');
+const canvas = document.getElementById('heartCanvas');
+const finaleContainer = document.getElementById('finaleContainer');
+canvas.style.display = 'block';
+finaleContainer.style.display = 'flex';
+runHeartAnimation();
+}
+
+function runHeartAnimation() {
+const canvas = document.getElementById('heartCanvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+canvas.width = window.innerWidth * window.devicePixelRatio;
+canvas.height = window.innerHeight * window.devicePixelRatio;
+ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+resize();
+
+const textToDisplay = "I love you Jay";
+const particles = [];
+const heartPoints = [];
+const width = window.innerWidth;
+const height = window.innerHeight;
+const scale = Math.min(width, height) / 30;
+
+for (let t = 0; t < Math.PI * 2; t += 0.03) {
+let x = 16 * Math.pow(Math.sin(t), 3);
+// FIXED MATH MULTIPLICATION HERE (added * symbols):
+let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+heartPoints.push({ x: width / 2 + x * scale, y: height / 2 - y * scale });
+}
+
+class TextParticle {
+constructor(targetX, targetY) {
+this.x = Math.random() * width;
+this.y = Math.random() * height;
+this.targetX = targetX + (Math.random() - 0.5) * 30;
+this.targetY = targetY + (Math.random() - 0.5) * 30;
+this.speedX = 0.02 + Math.random() * 0.03;
+this.speedY = 0.02 + Math.random() * 0.03;
+this.fontSize = Math.floor(Math.random() * 5) + 9;
+this.opacity = 0;
+this.glow = Math.random() * 10 + 2;
+}
+update() {
+this.x += (this.targetX - this.x) * this.speedX;
+this.y += (this.targetY - this.y) * this.speedY;
+if (this.opacity < 0.85) this.opacity += 0.01;
+}
+draw() {
+// FIXED STRING QUOTES AND WRAPPING HERE:
+ctx.fillStyle = `rgba(255, 20, 100, ${this.opacity})`; 
+ctx.font = `bold ${this.fontSize}px Arial`;
+ctx.shadowBlur = this.glow;
+ctx.shadowColor = "rgba(255, 255, 255, 1)";
+ctx.fillText(textToDisplay, this.x, this.y);
+}
+}
+
+for (let i = 0; i < 4; i++) {
+heartPoints.forEach(point => { particles.push(new TextParticle(point.x, point.y)); });
+}
+
+function animate() {
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+particles.forEach(p => { p.update(); p.draw(); });
+requestAnimationFrame(animate);
+}
+animate();
+}
+</script>
 </body>
 </html>
