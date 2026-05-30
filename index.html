@@ -71,7 +71,7 @@
             align-items: center;
             width: 100%;
             position: relative;
-            height: 60px;
+            height: 140px; /* Expanded slightly more for larger text blocks like "you don't love me?" */
         }
 
         button {
@@ -88,12 +88,36 @@
             background: linear-gradient(45deg, #ff4b5c, #ff2a7f);
             color: white;
             box-shadow: 0 5px 15px rgba(255, 75, 92, 0.3);
+            z-index: 12;
         }
 
         .btn-no, .btn-exit {
             background-color: #e0e0e0;
             color: #888;
             position: absolute;
+            z-index: 12;
+        }
+
+        /* Cute Please Floating Text */
+        .please-text {
+            position: absolute;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: white;
+            background: #ff4b72;
+            padding: 6px 14px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(255, 75, 114, 0.4);
+            pointer-events: none; 
+            white-space: nowrap; /* Keeps strings like "you don't love me?" on one single line */
+            animation: popOut 0.4s ease-out forwards;
+            z-index: 11;
+        }
+
+        @keyframes popOut {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.85; }
         }
 
         /* Canvas for Heart Background */
@@ -173,7 +197,7 @@
 
     <div class="slide" id="slide2">
         <h2>A Little Secret... 🤫</h2>
-        <p>I made this because of how much you love coding and i wanted to try it, i did my best so i hope you like it! literally took me the whole night...</p>
+        <p>I made this because of how much you love coding and i wanted to try it, i did my best so i hope you like it!</p>
         <div class="btn-container">
             <button class="btn-next" onclick="nextSlide(3)">Next Slide ➡️</button>
         </div>
@@ -189,7 +213,7 @@
 
     <div class="slide" id="slide4">
         <h2>Important Choice 🛑</h2>
-        <p>Do you want to exit the game, or proceed to see what's next? i dare you to press exit....</p>
+        <p>Do you want to exit the game, or proceed to see what's next?</p>
         <div class="btn-container" style="height: 80px;">
             <button class="btn-next" style="position: absolute; left: 15px;" onclick="nextSlide(5)">Proceed</button>
             <button class="btn-exit" id="exitBtn" style="right: 15px;">Exit</button>
@@ -207,9 +231,9 @@
     <div class="slide" id="slide6">
         <h2>Question time! 🥰</h2>
         <p>Do you promise to be mine forever and ever?</p>
-        <div class="btn-container" style="height: 100px; width: 100%;">
-            <button class="btn-yes" style="position: absolute; left: 20px;" onclick="startHeartFinale()">Yes, I do! ❤️</button>
-            <button class="btn-no" id="noBtn" style="right: 20px;">No</button>
+        <div class="btn-container" id="questionContainer" style="height: 140px; width: 100%;">
+            <button class="btn-yes" style="position: absolute; left: 10px;" onclick="startHeartFinale()">Yes, I do! ❤️</button>
+            <button class="btn-no" id="noBtn" style="right: 10px; top: 45px;">No</button>
         </div>
     </div>
 
@@ -230,17 +254,54 @@
             document.getElementById('slide' + slideNumber).classList.add('active');
         }
 
+        // Runaway "No" button with Multiple Randomized Messages
         const noBtn = document.getElementById('noBtn');
+        const questionContainer = document.getElementById('questionContainer');
+        
+        // List of random texts to pick from
+        const guiltTexts = [
+            "please 🥺",
+            "pretty please 🥺👉👈",
+            "you don't love me? 😭"
+        ];
+
         function runaway() {
-            const container = noBtn.parentElement;
-            const containerRect = container.getBoundingClientRect();
+            // 1. Grab old position coordinates to drop the text behind
+            const oldLeft = noBtn.style.left || (questionContainer.getBoundingClientRect().width - noBtn.offsetWidth - 10) + 'px';
+            const oldTop = noBtn.style.top || '45px';
+
+            spawnPlease(oldLeft, oldTop);
+
+            // 2. Set coordinates for new runaway point
+            const containerRect = questionContainer.getBoundingClientRect();
             const maxX = containerRect.width - noBtn.offsetWidth;
             const maxY = containerRect.height - noBtn.offsetHeight;
+            
             const randomX = Math.random() * maxX;
             const randomY = Math.random() * maxY;
+            
             noBtn.style.left = randomX + 'px';
             noBtn.style.top = randomY + 'px';
         }
+
+        function spawnPlease(x, y) {
+            const pleaseTag = document.createElement('div');
+            pleaseTag.className = 'please-text';
+            
+            // Randomly select one text string from our array list
+            const randomMessage = guiltTexts[Math.floor(Math.random() * guiltTexts.length)];
+            pleaseTag.innerText = randomMessage;
+            
+            pleaseTag.style.left = x;
+            pleaseTag.style.top = y;
+            
+            questionContainer.appendChild(pleaseTag);
+            
+            setTimeout(() => {
+                pleaseTag.remove();
+            }, 3000);
+        }
+
         noBtn.addEventListener('mouseover', runaway);
         noBtn.addEventListener('touchstart', (e) => {
             e.preventDefault();
