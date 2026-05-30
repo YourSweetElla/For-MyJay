@@ -14,12 +14,13 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #050505;
+            /* CHANGED: Soft, romantic pastel pink background */
+            background-color: #ffeef2; 
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: #4a1521; /* Darker berry color for better readability on pink */
             user-select: none;
             -webkit-user-select: none;
         }
@@ -34,12 +35,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.03);
+            /* CHANGED: White translucent box so it pops on the pink background */
+            background: rgba(255, 255, 255, 0.85);
             padding: 30px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 182, 193, 0.5);
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
             z-index: 10;
             animation: fadeIn 0.5s ease-out forwards;
         }
@@ -52,12 +54,13 @@
             font-size: 1.8rem;
             margin-bottom: 20px;
             line-height: 1.4;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            color: #ff2a7f; /* Cheerful dark pink for titles */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         p {
             font-size: 1.1rem;
-            color: #ccc;
+            color: #555;
             margin-bottom: 30px;
             line-height: 1.5;
         }
@@ -86,11 +89,11 @@
         .btn-next, .btn-yes {
             background: linear-gradient(45deg, #ff4b5c, #ff2a7f);
             color: white;
-            box-shadow: 0 5px 15px rgba(255, 75, 92, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 75, 92, 0.3);
         }
 
         .btn-no, .btn-exit {
-            background-color: #333;
+            background-color: #e0e0e0;
             color: #888;
             position: absolute;
         }
@@ -106,7 +109,7 @@
             display: none;
         }
 
-        /* Grand Finale Container (Scrollable so he can read it all on a phone) */
+        /* Grand Finale Container */
         .letter-container {
             position: absolute;
             top: 0;
@@ -119,16 +122,16 @@
             align-items: center;
             justify-content: flex-start;
             padding: 40px 24px;
-            overflow-y: auto; /* Lets him scroll through the message smoothly */
+            overflow-y: auto;
             text-align: center;
-            background: rgba(5, 5, 5, 0.4); /* Darkens the background slightly for text clarity */
+            background: rgba(255, 238, 242, 0.6); /* Translucent pink overlay */
         }
 
         .center-text {
-            color: #ffffff;
+            color: #ff2a7f;
             font-size: 2.3rem;
             font-weight: bold;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 0, 50, 0.6);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 75, 92, 0.3);
             margin-top: 40px;
             margin-bottom: 30px;
             opacity: 0;
@@ -137,18 +140,17 @@
 
         /* Your Long Letter Styling */
         .love-letter {
-            color: #fff;
+            color: #4a1521;
             font-size: 1.15rem;
             line-height: 1.7;
             max-width: 500px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(255, 255, 255, 0.9); /* Solid crisp white background box for your text */
             padding: 25px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 75, 92, 0.2);
-            box-shadow: 0 0 20px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 75, 92, 0.15);
+            box-shadow: 0 8px 25px rgba(255, 75, 92, 0.1);
             opacity: 0;
-            animation: textFadeIn 3s ease-in-out forwards 2s; /* Fades in smoothly right after the title */
+            animation: textFadeIn 3s ease-in-out forwards 2s;
         }
 
         @keyframes fadeIn {
@@ -260,7 +262,7 @@
             const finaleContainer = document.getElementById('finaleContainer');
             
             canvas.style.display = 'block';
-            finaleContainer.style.display = 'flex'; // Shows the title and letter
+            finaleContainer.style.display = 'flex';
             
             runHeartAnimation();
         }
@@ -299,47 +301,4 @@
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
                     this.targetX = targetX + (Math.random() - 0.5) * 30;
-                    this.targetY = targetY + (Math.random() - 0.5) * 30;
-                    
-                    this.speedX = 0.02 + Math.random() * 0.03;
-                    this.speedY = 0.02 + Math.random() * 0.03;
-                    
-                    this.fontSize = Math.floor(Math.random() * 5) + 9; 
-                    this.opacity = 0;
-                    this.glow = Math.random() * 15 + 5;
-                }
-
-                update() {
-                    this.x += (this.targetX - this.x) * this.speedX;
-                    this.y += (this.targetY - this.y) * this.speedY;
-                    if (this.opacity < 0.75) this.opacity += 0.01;
-                }
-
-                draw() {
-                    ctx.fillStyle = `rgba(255, 40, 80, ${this.opacity})`;
-                    ctx.font = `bold ${this.fontSize}px Arial`;
-                    ctx.shadowBlur = this.glow;
-                    ctx.shadowColor = "rgba(255, 0, 50, 1)";
-                    ctx.fillText(textToDisplay, this.x, this.y);
-                }
-            }
-
-            for (let i = 0; i < 4; i++) {
-                heartPoints.forEach(point => {
-                    particles.push(new TextParticle(point.x, point.y));
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    p.update();
-                    p.draw();
-                });
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-    </script>
-</body>
-</html>
+                    this.targetY = targetY + (Math.random() - 0.5) * 3
