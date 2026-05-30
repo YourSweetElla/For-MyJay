@@ -71,7 +71,7 @@
             align-items: center;
             width: 100%;
             position: relative;
-            height: 140px; /* Expanded slightly more for larger text blocks like "you don't love me?" */
+            height: 140px; 
         }
 
         button {
@@ -109,7 +109,7 @@
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(255, 75, 114, 0.4);
             pointer-events: none; 
-            white-space: nowrap; /* Keeps strings like "you don't love me?" on one single line */
+            white-space: nowrap; 
             animation: popOut 0.4s ease-out forwards;
             z-index: 11;
         }
@@ -254,25 +254,25 @@
             document.getElementById('slide' + slideNumber).classList.add('active');
         }
 
-        // Runaway "No" button with Multiple Randomized Messages
+        // Runaway "No" button with Sequential Tracked Messages
         const noBtn = document.getElementById('noBtn');
         const questionContainer = document.getElementById('questionContainer');
         
-        // List of random texts to pick from
+        // List of tracked texts in absolute order
         const guiltTexts = [
             "please 🥺",
             "pretty please 🥺👉👈",
             "you don't love me? 😭"
         ];
+        
+        let textTrackerIndex = 0; // Tracks which message is next in line
 
         function runaway() {
-            // 1. Grab old position coordinates to drop the text behind
             const oldLeft = noBtn.style.left || (questionContainer.getBoundingClientRect().width - noBtn.offsetWidth - 10) + 'px';
             const oldTop = noBtn.style.top || '45px';
 
             spawnPlease(oldLeft, oldTop);
 
-            // 2. Set coordinates for new runaway point
             const containerRect = questionContainer.getBoundingClientRect();
             const maxX = containerRect.width - noBtn.offsetWidth;
             const maxY = containerRect.height - noBtn.offsetHeight;
@@ -288,9 +288,9 @@
             const pleaseTag = document.createElement('div');
             pleaseTag.className = 'please-text';
             
-            // Randomly select one text string from our array list
-            const randomMessage = guiltTexts[Math.floor(Math.random() * guiltTexts.length)];
-            pleaseTag.innerText = randomMessage;
+            // CRITICAL CHANGE: Grab the exact text sequentially, then shift index over
+            pleaseTag.innerText = guiltTexts[textTrackerIndex];
+            textTrackerIndex = (textTrackerIndex + 1) % guiltTexts.length; // Resets cleanly back to 0 after hitting index 2
             
             pleaseTag.style.left = x;
             pleaseTag.style.top = y;
